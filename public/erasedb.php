@@ -1,8 +1,10 @@
 <?php
 /* Codificação UTF-8 */
 require_once 'inc/inc.php';
-COM_header();
-ADMIN_check();
+//COM_header();
+//ADMIN_check();
+DB_connect();
+HTML_header();
 ?>
 <?php
     $sql = 'drop table if exists usuario, juiz, cargo_juiz, periodo_interrup, pena_aplic,
@@ -170,5 +172,6 @@ ADMIN_check();
 ?>
 
 <?php
-COM_footer();
+//COM_footer();
+HTML_footer();
 ?>
