@@ -1,0 +1,14 @@
+/* Codificação UTF-8 */
+body {
+    background-color:#d0e4fe;
+    font-family: "arial", "sans serif";
+    font-size: 12px;
+}
+#status {
+    background-color:#5ed3e3;
+    position: fixed;
+    /*margin-right:30px; */
+}
+#corpo {
+    margin-left: 190px;
+}

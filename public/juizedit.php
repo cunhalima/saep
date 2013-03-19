@@ -8,13 +8,26 @@ if (isset($_GET['codigo'])) {
     mysql_query("delete from juiz where codigo = \"$codigo\"");
 }
 if (isset($_POST['codigo'])) {
+    
+
     $codigo = (int)$_POST['codigo'];
-    $nome = addslashes(@$_POST['nome'] or '');
-    $cargo = (int)@$_POST['cargo'];
-    $sexo = (int)@$_POST['sexo'];
+    $nome = @addslashes($_POST['nome']);
+    $cargo = (int)$_POST['cargo'];
+    $sexo = (int)$_POST['sexo'];
     $sql = "replace into juiz(codigo,nome,cargo,sexo) " .
                 "values (\"$codigo\", \"$nome\", \"$cargo\", \"$sexo\")";
-    //echo $sql;
+
+                    echo $_POST['codigo'];
+    /*
+    echo $codigo;
+    echo $_POST['nome'];
+    echo $nome;
+    echo $_POST['sexo'];
+    echo $sexo;
+    die();
+    */
+
+    //            echo $sql;
     //die();
     mysql_query($sql);
 }

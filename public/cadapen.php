@@ -56,6 +56,7 @@ if (isset($_POST['nome']) && (trim($_POST['nome']) != '')) {
     }
 }
 SAEP_printStatus();
+echo '<div id="corpo">';
 
 if ($codigo !== 0) {
     $result = mysql_query("select * from apenado where codigo=\"$codigo\"") 

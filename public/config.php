@@ -4,8 +4,8 @@ require_once 'inc/inc.php';
 COM_header();
 $usuario = $_SESSION['nome'];
 if (isset($_POST['senha_antiga']) && isset($_POST['senha_nova'])) {
-    $antiga = addslashes($_POST['senha_antiga']);
-    $nova = addslashes($_POST['senha_nova']);
+    $antiga = PASSWORD_get($_POST['senha_antiga']);
+    $nova = PASSWORD_get($_POST['senha_nova']);
     $result = mysql_query("update usuario set senha=\"$nova\" where nome=\"$usuario\" and senha=\"$antiga\"") 
         or die('A error occured: ' . mysql_error());
     if ($result === TRUE) {

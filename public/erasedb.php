@@ -164,8 +164,8 @@ HTML_header();
     //echo '</pre>';
 
 
-
-    echo 'Banco de dados restauradao.'
+    echo '<p>Banco de dados restauradao.</p>';
+    echo '<p><a href="index.php">Menu principal</a>';
 ?>
 
 <?php

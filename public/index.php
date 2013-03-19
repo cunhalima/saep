@@ -3,7 +3,6 @@
 require_once 'inc/inc.php';
 COM_header();
 ?>
-<div>
 <ul>
 <li><a href="cadapen.php">Cadastrar apenado</a></li>
 <li><a href="consapen.php">Consultar apenado</a></li>
@@ -19,7 +18,6 @@ COM_header();
 <?php } ?>
 <li><a href="logout.php">Sair</a></li>
 </ul>
-</div>
 <?php
 COM_footer();
 ?>

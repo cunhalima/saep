@@ -3,9 +3,9 @@
 function HTML_header() {
     echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">';
     echo '<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8" />';
+    echo '<link rel="stylesheet" type="text/css" href="css/style.css">';
     echo '<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>';
     echo '<title>Consultar apenado</title></head><body>';
-    echo '<p><a href="index.php">Tela principal</a></p>';
 }
 function HTML_footer() {
     echo '</body></html>';
@@ -29,7 +29,9 @@ function DATE_s2p($date) {
 function SAEP_printStatus() {
     $nome = $_SESSION['nome'];
     $apen = $_SESSION['apen'];
-    echo "<div>Usuário atual: $nome<br />&nbsp;</div>";
+    echo "<div id=\"status\">";
+    echo "<a href=\"index.php\">Tela principal</a><br />";
+    echo "Usuário atual: <strong>$nome</strong><br />";
     $result = mysql_query("select nome from apenado where codigo=\"$apen\"") 
         or die('A error occured: ' . mysql_error());
     $count = mysql_num_rows($result);
@@ -39,7 +41,7 @@ function SAEP_printStatus() {
         $nomeapen = '';
         $_SESSION['apen'] = 0;
     }
-    echo "<div>Apenado atual: $nomeapen<br />&nbsp;</div>";
+    echo "Apenado atual: <strong>$nomeapen<strong></div>";
 
 }
 function SESSION_check() {
@@ -63,7 +65,7 @@ function DB_connect() {
         or die('Could not select a database.');
 }
 function ADMIN_ok() {
-    if (!isset($_SESSION['nome']) || (($_SESSION['nome'] !== 'admin') && ($_SESSION['nome'] !== 'alex'))) {
+    if (!isset($_SESSION['nome']) || (($_SESSION['nome'] !== 'admin')/* && ($_SESSION['nome'] !== 'alex')*/)) {
         return FALSE;
     }
     return TRUE;
@@ -78,10 +80,13 @@ function COM_header($printstatus = TRUE) {
     SESSION_check();
     DB_connect();
     HTML_header();
-    if ($printstatus)
+    if ($printstatus) {
         SAEP_printStatus();
+        echo '<div id="corpo">';
+    }
 }
 function COM_footer() {
+    echo '</div>';
     HTML_footer();
 }
 function HTML_printSelectYN($tname, $cur, $yes = 'Sim', $no = 'Não') {
