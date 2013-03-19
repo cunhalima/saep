@@ -111,5 +111,8 @@ function HTML_printSelect($tname, $cname, $nname, $tab, $cur) {
     }
     echo '</select>';    
 }
-
+function PASSWORD_get($senha) {
+    $salt = 'ugnpjbPrBJqcxK9RW8FS4Ux4';
+    return md5($senha . $salt);
+}
 ?>

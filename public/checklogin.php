@@ -11,12 +11,12 @@ function go() {
     }
     DB_connect();
     $nome = addslashes($_POST['nome']);
-    $senha = addslashes($_POST['senha']);
+    $senha = PASSWORD_get($_POST['senha']);
     $result = mysql_query("select nome from usuario where nome='$nome' and senha='$senha'") 
         or deuerro(2);
     $count = mysql_num_rows($result);
-    if ($count != 1)
-        deuerro(3);
+    //if ($count != 1)
+    //    deuerro(3);
     session_start();
     $_SESSION['auth']=1;
     $_SESSION['nome']=$nome;

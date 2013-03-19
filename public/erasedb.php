@@ -7,6 +7,7 @@ DB_connect();
 HTML_header();
 ?>
 <?php
+    $password = PASSWORD_get('1234');
     $sql = 'drop table if exists usuario, juiz, cargo_juiz, periodo_interrup, pena_aplic,
             processo_cond, decis_st, decis_comut, decis_remicao, apenado, regime_pris, unid_pris;
     create table unid_pris (
@@ -108,7 +109,7 @@ HTML_header();
         primary key(sigla)
     );
     create table juiz (
-        codigo integer not null auto_increment,
+        codigo integer not null,
         cargo tinyint,
         nome varchar(45) not null,
         sexo tinyint not null,
@@ -129,8 +130,8 @@ HTML_header();
         ("1", "1", "Maria Joaquina", "2"),
         ("2", "2", "Gepeto da Silva", "1");
     insert into usuario (nome, senha, juiz) values
-        ("admin", "1234", NULL),
-        ("alex", "1234", "2");
+        ("admin", "' . $password . '", NULL),
+        ("alex", "' . $password . '", "2");
     insert into unid_pris (sigla, nome) values
         ("1", "Penitenciária Agrícola de Chapecó"),
         ("2", "Presídio Regional de Chapecó"),

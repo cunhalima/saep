@@ -4,10 +4,9 @@ require_once 'inc/inc.php';
 COM_header();
 ?>
 <ul>
-<li><a href="consapen.php">Editar usuários</a></li>
+<li><a href="usredit.php">Editar usuários</a></li>
+<li><a href="juizedit.php">Editar juízes</a></li>
 <li><a href="erasedb.php">Apagar o banco de dados</a></li>
-<li><a href="index.php">Realizar backup</a></li>
-<li><a href="index.php">Sair</a></li>
 </ul>
 
 
