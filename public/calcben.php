@@ -14,7 +14,7 @@ if ($count != 1)
 $result = mysql_query("select min(data_primpris) from processo_cond where " .
     "apenado_codigo = \"$apen\"")
     or die('A error occured: ' . mysql_error());
-$primpris = DATE_s2p(mysql_fetch_array($result)[0]);
+$primpris = DATE_s2p(mysql_result($result, 0, 0));
 $result = mysql_query("select nome from apenado where codigo = \"$apen\"")
     or die('A error occured: ' . mysql_error());
 $nome = htmlspecialchars(mysql_result($result, 0, 0));
