@@ -1,5 +1,10 @@
 <?php
 /* Codificação UTF-8 */
+/* Autor: Alex Reimann Cunha Lima
+   E-mail: cunha.lima@ufrgs.br
+   Propósito do programa: cadastrar os apenados da exeucução penal e emitir
+   atestados de penas em seu nome que indiquem a situação de seu processo.
+*/
 require_once 'inc/inc.php';
 COM_header();
 ?>
