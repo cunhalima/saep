@@ -3,33 +3,6 @@
 require_once 'inc/inc.php';
 COM_header(FALSE);
 
-function HTML_printSelectYN($tname, $cur, $yes = 'Sim', $no = 'Não') {
-    echo "<select name=\"$tname\">";    
-    $selected = ' selected="selected"';
-    $issel = ($cur == 0) ? $selected : '';
-    echo "<option value=\"0\"$issel></option>";
-    $issel = ($cur == 1) ? $selected : '';
-    echo "<option value=\"1\"$issel>$yes</option>";
-    $issel = ($cur == 2) ? $selected : '';
-    echo "<option value=\"2\"$issel>$no</option>";
-    echo '</select>';    
-}
-
-function HTML_printSelect($tname, $cname, $nname, $tab, $cur) {
-    echo "<select name=\"$tname\">";    
-    $result = mysql_query("select $cname,$nname from $tab") 
-        or die('A error occured: ' . mysql_error());
-    $selected = ' selected="selected"';
-    $issel = ($cur == 0) ? $selected : '';
-    echo "<option value=\"0\"$issel></option>";
-    while ($row = mysql_fetch_assoc($result)) {
-        $codigo = (int)$row[$cname];
-        $nome = $row[$nname];
-        $issel = ($cur == $codigo) ? $selected : '';
-        echo "<option value=\"$codigo\"$issel\">$nome</option>";
-    }
-    echo '</select>';    
-}
 
 $count = 0;
 $codigo = 0;

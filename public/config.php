@@ -2,35 +2,44 @@
 /* Codificação UTF-8 */
 require_once 'inc/inc.php';
 COM_header();
+$usuario = $_SESSION['nome'];
+if (isset($_POST['senha_antiga']) && isset($_POST['senha_nova'])) {
+    $antiga = addslashes($_POST['senha_antiga']);
+    $nova = addslashes($_POST['senha_nova']);
+    $result = mysql_query("update usuario set senha=\"$nova\" where nome=\"$usuario\" and senha=\"$antiga\"") 
+        or die('A error occured: ' . mysql_error());
+    if ($result === TRUE) {
+        $num = mysql_affected_rows();
+        if ($num === 1)
+            echo '<p>Senha alterada com sucesso</p>';
+    }
+}
+if (isset($_POST['juiz'])) {
+    $juiz = addslashes($_POST['juiz']);
+    $result = mysql_query("update usuario set juiz=\"$juiz\" where nome=\"$usuario\"") 
+        or die('A error occured: ' . mysql_error());
+}
+
 ?>
-<form>
+
+
+<form method="post" action="config.php">
 Senha atual<br />
-<input type="text" /><br />
+<input type="password" name="senha_antiga"/><br />
 Senha nova<br />
-<input type="text" /><br />
+<input type="password" name="senha_nova"/><br />
+<input type="submit" value="Alterar senha"/><br />
 </form>
-<form>
+<form method="post" action="config.php">
 Juiz atual<br />
-<select>
 <?php
-    $usuario = $_SESSION['nome'];
     $result = mysql_query("select juiz from usuario where nome=\"$usuario\"") 
         or die('A error occured: ' . mysql_error());
-    $juiz_atual = (int)mysql_result($result, 0);
-    $result = mysql_query("select codigo,nome from juiz") 
-        or die('A error occured: ' . mysql_error());
-    $selected = ' selected="selected"';
-    $issel = ($juiz_atual == 0) ? $selected : '';
-    echo "<option value=\"0\"$issel></option>";
-    while ($row = mysql_fetch_assoc($result)) {
-        $codigo = (int)$row['codigo'];
-        $nome = $row['nome'];
-        $issel = ($juiz_atual == $codigo) ? $selected : '';
-        echo "<option value=\"$codigo\"$issel\">$nome</option>";
-    }
+    $juiz = (int)mysql_result($result, 0);
+    HTML_printSelect('juiz', 'codigo', 'nome', 'juiz', $juiz);
 ?>
-</select><br />
-
+<br />
+<input type="submit" value="Alterar juiz"/><br />
 </form>
 <?php
 COM_footer();

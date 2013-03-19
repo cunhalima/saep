@@ -88,10 +88,6 @@ HTML_header();
         pec varchar(15) not null,
         data_fato date not null,
         capitulacao varchar(45),
-        reincidencia tinyint(1),
-        subst_restritiva tinyint(1),
-        hediondez tinyint(1),
-        revog_lc tinyint(1),
         pena_anos integer,
         pena_meses integer,
         pena_dias integer,
@@ -115,7 +111,7 @@ HTML_header();
         codigo integer not null auto_increment,
         cargo tinyint,
         nome varchar(45) not null,
-        sexo char not null,
+        sexo tinyint not null,
         primary key(codigo),
         foreign key(cargo) references cargo_juiz(sigla) on delete set null on update cascade
     );
